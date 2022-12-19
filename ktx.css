@@ -1,0 +1,1025 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+select {
+  border: 0;
+  outline: 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+option {
+  font-weight: 500;
+  outline: 0;
+  border: 0;
+}
+body {
+  width: 100%;
+  height: auto;
+  /* background-image: linear-gradient(180deg, black, blue, black);
+  background-size: 100%;
+  background-repeat: no-repeat; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.wrapLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #6c5ce7;
+}
+.formLogin {
+  width: 400px;
+  height: 500px;
+  /* background-color: #2c2c54; */
+  padding: 5px;
+  border-radius: 5px;
+}
+.logoLogin {
+  width: 100%;
+  height: 20%;
+  /* background-color: #fff00d; */
+}
+.formLogin form {
+  margin-top: 50px;
+  width: 100%;
+  height: 50%;
+  /* background-color: #fff; */
+  padding: 5px;
+}
+.formLogin input {
+  width: 100%;
+  height: 40px;
+  background-color: #ecf0f1;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+.formLogin button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 30px;
+  background-color: #ecf0f1;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #2c3e50;
+  font-weight: 500;
+  margin: 0 auto;
+}
+#submitLogin {
+  background-color: #0abde3;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  color: #ff7675;
+  font-weight: 600;
+}
+
+.formLogin #submitLogin:hover {
+  background-color: #48dbfb;
+}
+
+/* view */
+
+#rentView {
+  width: 100%;
+  height: 100%;
+}
+#dbView,
+#mrView,
+#miView,
+#pcView,
+#dormiView {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+/* dashboard */
+.content {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.menu {
+  display: block;
+  width: 15%;
+  height: 100%;
+  background-color: #40407a;
+  /* border-right: 1px solid black; */
+  box-shadow: 0px 0px 10px black;
+  z-index: 1000;
+}
+
+.logo {
+  width: 100%;
+  height: 10%;
+  padding: 5px;
+  box-shadow: 0px 0px 10px black;
+  /* border-bottom: 1px solid black; */
+}
+.logo img,
+.logoLogin img {
+  display: block;
+  width: 50%;
+  transform: translate(50%);
+}
+.logo span,
+.logoLogin span {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul {
+  list-style-type: none;
+}
+ul.menuList {
+  margin-top: 35px;
+  border-radius: 10px 0 0 10px;
+  /* border: 2px solid blue; */
+  height: 450px;
+}
+ul.menuList li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+ul.menuList li:hover {
+  background-color: #2c2c54;
+}
+.listSelect {
+  background-color: #2c2c54;
+  border-left: 5px solid #ff5252;
+}
+/* ul.menuList li a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 10px;
+} */
+ul.menuList li span {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.mainContent {
+  width: 85%;
+  height: 100vh;
+}
+
+/* headcontent */
+.headContent {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding: 5px;
+  width: 100%;
+  height: 10%;
+  background-color: #706fd3;
+  border-bottom: 1px solid white;
+}
+
+.userName {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  color: white;
+  width: 400px;
+  height: 50px;
+  padding: 10px;
+}
+.userAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  color: white;
+  /* background-color: #474787; */
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+#avatarImg1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid black;
+  transition: all 0.2s ease-in-out;
+}
+#avatarImg1:hover {
+  /* background-color: #48dbfb; */
+  border: 2px solid #48dbfb;
+}
+.listNow {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  width: 100%;
+  height: 5%;
+  background-color: white;
+  color: #706fd3;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+#listNow {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  width: 100%;
+  height: 5%;
+  font-size: 18px;
+  background-color: white;
+  color: #576574;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+/* bodyContent */
+.bodyContent {
+  width: 100%;
+  height: 85%;
+  background-color: #dfe4ea;
+  padding: 30px;
+}
+
+.roomView {
+  width: 45%;
+  height: 50%;
+  background-color: white;
+  margin-right: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.roomView span,
+.timeView span {
+  height: 10%;
+  display: block;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 500;
+  color: #222f3e;
+}
+#dbRoom {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #222f3e;
+}
+#dbTime {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #48dbfb;
+}
+#dbTime i {
+  margin: 0 10px;
+}
+.timeView {
+  width: 45%;
+  height: 50%;
+  color: #222f3e;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+}
+.filter {
+  width: 100%;
+  height: 15%;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #8395a7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.searchRoom {
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+.searchRoom input {
+  width: 100%;
+  height: 40px;
+  background-color: #ecf0f1;
+  border: 0;
+  outline: 0;
+  border-radius: 20px;
+  padding: 5px 40px 5px 20px;
+  font-size: 15px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+.searchRoom i {
+  font-size: 20px;
+  position: relative;
+  right: 30px;
+}
+
+.filter select {
+  width: 220px;
+  height: 40px;
+  margin-right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+.filter select:hover {
+  background-color: #c8d6e5;
+}
+.filter button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.filter button:hover {
+  background-color: #c8d6e5;
+}
+.room {
+  width: 100%;
+  max-height: 80%;
+  overflow: auto;
+  border-radius: 10px;
+  border-bottom: 5px solid #0984e3;
+}
+.rooms {
+  width: 100%;
+  /* height: 300px; */
+  border-collapse: collapse;
+  color: #2d3436;
+  text-align: center;
+  font-size: 18px;
+}
+
+.room::-webkit-scrollbar {
+  width: 10px;
+  background-color: #c8d6e5;
+}
+.room::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #222f3e;
+}
+
+.rooms thead {
+  color: #dfe6e9;
+  background-color: #0984e3;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* border-bottom: 2px solid #474787; */
+  box-shadow: 0 0 5px 2px black;
+}
+
+.rooms td {
+  width: 50px;
+  height: 50px;
+  font-weight: 500;
+  /* padding: 10px 10px; */
+}
+.rooms th {
+  width: 50px;
+  height: 50px;
+  position: sticky;
+  top: 0;
+}
+.rooms tbody tr {
+  height: 50px;
+  background-color: white;
+  border-bottom: 1px solid #b2bec3;
+  cursor: pointer;
+  /* transition: all 0.1s ease-in-out; */
+}
+.rooms tbody tr:hover {
+  background-color: #222f3e;
+  color: white;
+}
+.optionRoom {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.optionRoom i {
+  width: 40px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b2bec3;
+  /* background-color: #dfe6e9; */
+  border-radius: 5px;
+}
+.fa-circle-info {
+  margin-right: 5px;
+}
+.fa-house-medical {
+  margin-left: 5px;
+}
+.fa-arrows-rotate {
+  margin-left: 5px;
+}
+.optionRoom i:hover {
+  color: #222f3e;
+  background-color: #c8d6e5;
+}
+.popup {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+  z-index: 10000000000;
+}
+.popup2 {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+  z-index: 10000000000000000;
+}
+.showPopup {
+  pointer-events: all;
+  opacity: 1;
+}
+.roomDetailPopup {
+  width: 600px;
+  height: 600px;
+  background-color: #74b9ff;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-weight: 400;
+  font-size: 20px;
+}
+.headDetail,
+.headRent {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.closePopup,
+.closePopup2 {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
+  color: #d63031;
+}
+
+.closePopup:hover,
+.closePopup2:hover {
+  color: #dfe6e9;
+}
+.mainDetail {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.mainDetail p {
+  text-align: left;
+}
+.mainDetail img {
+  width: 500px;
+  height: auto;
+}
+.roomRentPopup {
+  width: 520px;
+  height: 420px;
+  background-color: #74b9ff;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-weight: 600;
+  font-size: 20px;
+}
+.headFormRent {
+  text-align: center;
+}
+.formRent select {
+  width: 120px;
+  height: 30px;
+  margin-right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+.payRent label {
+  color: #2d3436;
+}
+.submitRent {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 50px;
+}
+.submitRent button {
+  width: 100px;
+  height: 50px;
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+  font-size: 18px;
+  color: black;
+  background-color: #fdcb6e;
+  cursor: pointer;
+}
+.submitRent button:hover {
+  color: white;
+  background-color: #00b894;
+}
+
+.roomChangePopup {
+  width: 80%;
+  height: 80%;
+  background-color: #74b9ff;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-weight: 600;
+  font-size: 20px;
+}
+.roomChange {
+  width: 100%;
+  height: 95%;
+}
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  color: white;
+  font-size: 18px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 1000000000000000000000000000000000000000;
+}
+
+.notification i {
+  margin-right: 5px;
+}
+.showNoti {
+  opacity: 1;
+}
+
+/* my room */
+.mainMyRoom {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  /* background-color: #6c5ce7; */
+  border-radius: 10px;
+}
+
+.inforMyRoom {
+  width: 70%;
+  height: 100%;
+  /* background-color: #0984e3; */
+  /* padding: 10px; */
+}
+.roomInfor {
+  display: flex;
+  width: 100%;
+  height: 49%;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.roomIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+  color: #222f3e;
+  /* background-color: black; */
+
+  font-size: 150px;
+}
+.roomIcon i {
+  animation: roomIcon 2s ease-in-out infinite;
+  border-radius: 50%;
+}
+@keyframes roomIcon {
+  0% {
+    scale: 100%;
+  }
+  50% {
+    scale: 105%;
+  }
+  100% {
+    scale: 100%;
+  }
+}
+#roomTextTemp,
+#dbRoomTemp {
+  display: none;
+}
+.roomTextMain {
+  width: 60%;
+  height: 100%;
+  /* background-color: #0984e3; */
+  padding: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+.roomText {
+  width: 100%;
+  height: 75%;
+  /* background-color: #0984e3; */
+  padding: 10px;
+  font-size: 22px;
+  text-align: left;
+  font-weight: 600;
+}
+.roomTime {
+  width: 100%;
+  height: 49%;
+  background-color: white;
+  font-size: 30px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+#timeRoomRent {
+  font-size: 50px;
+  font-weight: 800;
+  color: #48dbfb;
+}
+.fa-right-long {
+  color: #222f3e;
+}
+.extraMyRoom {
+  width: 30%;
+  height: 100%;
+  /* background-color: #34ace0; */
+  padding: 0px 0px 0px 10px;
+}
+.roomPrice {
+  width: 100%;
+  height: 49%;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+#roomPrice {
+  font-size: 50px;
+  font-weight: 800;
+  color: #feca57;
+  margin-top: 50px;
+}
+#changeRoom {
+  width: 150px;
+  height: 50px;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 3px 1px 2px black;
+  border-radius: 10px;
+  font-size: 18px;
+  color: black;
+  background-color: #fdcb6e;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+#changeRoom i {
+  margin-left: 5px;
+}
+#changeRoom:hover {
+  color: white;
+  background-color: #0984e3;
+}
+.timeRemaining {
+  width: 100%;
+  height: 49%;
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 10px;
+}
+#timeRemaining {
+  font-size: 40px;
+  font-weight: 800;
+  color: #ee5253;
+}
+
+/* myInfor */
+.myInfor {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.myIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30px;
+  width: 30%;
+  height: 70%;
+  color: #222f3e;
+}
+
+#avatarImg2 {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+.myIcon label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  height: 15%;
+  font-weight: 600;
+  font-size: 17px;
+  /* position: absolute; */
+  cursor: pointer;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: #6c5ce7;
+  transition: all 0.2s ease-in-out;
+}
+.myIcon label:hover {
+  background-color: #00b894;
+}
+#file-input {
+  display: none;
+}
+#myAvatar {
+  font-size: 150px;
+}
+.myText {
+  display: flex;
+  width: 60%;
+  height: 100%;
+  /* background-color: #0984e3; */
+  padding: 10px;
+  font-size: 20px;
+}
+
+.labelText {
+  width: 30%;
+  font-weight: 500;
+  color: #222f3e;
+  margin-right: 50px;
+}
+.contentText {
+  width: 60%;
+  height: 100%;
+}
+.contentInput {
+  pointer-events: all;
+}
+.editDisnable {
+  pointer-events: none;
+}
+.contentInput input {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  border-bottom: 1px solid #00cec9;
+  outline: 0;
+  /* border-radius: 5px; */
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  font-size: 19px;
+  color: #1e90ff;
+  background-color: transparent;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+}
+.contentInput input:focus {
+  border-bottom: 5px solid #00cec9;
+}
+.genderText {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  color: #1e90ff;
+  font-weight: 700;
+}
+.genderText input {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+#editMyInfor {
+  width: 100px;
+  height: 50px;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 3px 1px 2px black;
+  margin-top: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-left: 100px;
+  color: black;
+  background-color: #00cec9;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+#saveMyInfor {
+  width: 100px;
+  height: 50px;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 3px 1px 2px black;
+  margin-top: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-left: 5px;
+  color: black;
+  background-color: #636e72;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+#savePass {
+  width: 100px;
+  height: 50px;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 3px 1px 2px black;
+  margin-top: 40px;
+  margin-left: 5px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: black;
+  background-color: #636e72;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+#editMyInfor:hover,
+#saveMyInfor:hover,
+#savePass:hover {
+  color: white;
+}
+
+/* dormitory */
+.dormiText {
+  width: 49%;
+  height: 100%;
+  background-color: white;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.dormiText p {
+  width: 100%;
+  height: 78%;
+  cursor: context-menu;
+  overflow: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #c8d6e5;
+}
+.dormiText p::-webkit-scrollbar {
+  width: 0;
+}
+.dormiContact {
+  width: 100%;
+  height: 20%;
+  font-size: 18px;
+  border-radius: 10px;
+  background-color: #8395a7;
+}
+.itemContact {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  font-size: 18px;
+  color: white;
+}
+.itemContact a {
+  color: #48dbfb;
+}
+.itemContact a:hover {
+  color: #0abde3;
+}
+.dormiImg {
+  width: 49%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+}
+
+.itemImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: auto;
+}
+.itemImg img {
+  width: 100%;
+  height: auto;
+}
+
+.itemImg::-webkit-scrollbar,
+.dormiText p::-webkit-scrollbar {
+  width: 10px;
+  background-color: #c8d6e5;
+}
+.itemImg::-webkit-scrollbar-thumb,
+.dormiText p::-webkit-scrollbar-thumb {
+  background-color: #222f3e;
+  border-radius: 10px;
+}

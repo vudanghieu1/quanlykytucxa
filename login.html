@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ký Túc Xá</title>
+    <link rel="stylesheet" href="..\ktx.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="shortcut icon" type="image/png" href="../img\KTX_logo.svg.png" />
+  </head>
+  <body>
+    <div class="wrapLogin">
+      <div class="formLogin">
+        <div class="logoLogin">
+          <img src="..\img\KTX_logo.svg.png" />
+          <span>Ký Túc Xá</span>
+        </div>
+        <form
+          name="formLogin"
+          action="..\main.html"
+          id="Login"
+          onsubmit="return login()"
+        >
+          <input
+            type="text"
+            name="masvLogin"
+            id="masvLogin"
+            placeholder="Mã sinh viên"
+          />
+          <input
+            type="password"
+            name="passwordLogin"
+            id="passwordLogin"
+            placeholder="Mật khẩu"
+          />
+          <input type="submit" value="ĐĂNG NHẬP" id="submitLogin" />
+          <div id="message" class="message"></div>
+          <!-- <a href="..\signUp.html"
+            ><button type="button" id="switchSignUp">
+              Đăng ký mới <i class="fas fa-angle-right"></i></button
+          ></a> -->
+        </form>
+      </div>
+    </div>
+    <script>
+      function login() {
+        if (masvLogin.value === "" && passwordLogin.value === "") {
+          masvLogin.focus();
+          message.innerHTML = "Vui lòng nhập đầy đủ thông tin!";
+          return false;
+        } else if (masvLogin.value == "") {
+          masvLogin.focus();
+          message.innerHTML = "Vui lòng nhập mã sinh viên!";
+          return false;
+        } else if (passwordLogin.value == "") {
+          passwordLogin.focus();
+          message.innerHTML = "Vui lòng nhập mật khẩu!";
+          return false;
+        } else {
+          if (masvLogin.value == "1" && passwordLogin.value == "1") {
+            return true;
+          } else {
+            message.innerHTML = "Mã sinh viên hoặc mật khẩu sai!";
+            return false;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

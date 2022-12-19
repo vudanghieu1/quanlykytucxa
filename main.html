@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ký Túc Xá</title>
+    <link rel="stylesheet" href="..\ktx.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="shortcut icon" type="image/png" href="../img\KTX_logo.svg.png" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="menu">
+        <div class="logo">
+          <a href="..\dashboard.html">
+            <img src="..\img\KTX_logo.svg.png" alt="Trang chủ" />
+            <span>Ký Túc Xá</span>
+          </a>
+        </div>
+        <div class="listMenu">
+          <ul class="menuList">
+            <li id="dashboard">
+              <i class="fa-solid fa-house"></i>
+              <span>Trang Chủ</span>
+              <!-- <a href="..\dashboard.html"> </a> -->
+            </li>
+            <li id="rent">
+              <i class="fa-solid fa-house-chimney-medical"></i>
+              <span>Thuê Phòng</span>
+              <!-- <a href="..\rent.html"> </a> -->
+            </li>
+            <li id="myRoom">
+              <i class="fa-solid fa-house-user"></i>
+              <span>Phòng Của Tôi</span>
+              <!-- <a href=""> </a> -->
+            </li>
+            <li id="myInfor">
+              <i class="fa-solid fa-circle-user"></i>
+              <span>Thông Tin Của Tôi</span>
+              <!-- <a href="..\myInfor.html"> </a> -->
+            </li>
+            <li id="passwordChange">
+              <i class="fa-solid fa-key"></i>
+              <span>Đổi Mật Khẩu</span>
+              <!-- <a href="..\password.html"> </a> -->
+            </li>
+            <li id="dormitory">
+              <i class="fa-solid fa-building"></i>
+              <span>Thông Tin Ký Túc Xá</span>
+              <!-- <a href="..\dormitory.html"> </a> -->
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mainContent">
+        <div class="headContent">
+          <div class="userName" id="userName">Nguyễn Văn A</div>
+          <div class="userAvatar">
+            <img src="..\img\user.png" id="avatarImg1" />
+          </div>
+        </div>
+        <div id="listNow"></div>
+        <div class="bodyContent">
+          <div id="dbView">
+            <div class="roomView">
+              <span>Phòng</span>
+              <div id="dbRoomTemp"></div>
+              <div id="dbRoom"></div>
+            </div>
+            <div class="timeView">
+              <span>Thời gian</span>
+              <div id="dbTime"></div>
+            </div>
+          </div>
+          <div id="rentView">
+            <div class="filter">
+              <div class="searchRoom">
+                <input
+                  type="text"
+                  name="searchRoom"
+                  id="searchRoom"
+                  onkeyup="tableSearch()"
+                  placeholder="Tìm phòng số"
+                />
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+
+              <select name="area" id="area" onchange="getArea()">
+                <option value="none">Khu</option>
+                <option value="D1">Khu D1</option>
+                <option value="D2">Khu D2</option>
+                <!-- <option value="C">Khu C</option> -->
+              </select>
+              <select name="price" id="price" onchange="getPrice()">
+                <option value="none">Giá</option>
+                <option value="250K">250K</option>
+                <option value="310K">310K</option>
+                <option value="340K">340K</option>
+                <!-- <option value="250K">250K</option> -->
+              </select>
+              <!-- <select name="maxPeople" id="maxPeople">
+                <option value="none">Số lượng người</option>
+                <option value="1">1 người</option>
+                <option value="2">2 người</option>
+                <option value="3">3 người</option>
+              </select> -->
+              <select name="status" id="status" onchange="getStatus()">
+                <option value="none">Trạng thái</option>
+                <option value="Trống">Trống</option>
+                <option value="Còn">Còn</option>
+                <option value="Đầy">Đầy</option>
+              </select>
+              <button type="button" id="resetFilter">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+              </button>
+            </div>
+            <div class="room">
+              <table
+                class="rooms"
+                data-filter-control="true"
+                data-show-search-clear-button="true"
+              >
+                <thead>
+                  <tr>
+                    <th>Tên phòng</th>
+                    <th>Khu</th>
+                    <th>Giá / người / tháng</th>
+                    <th>Số lượng người</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="mainRooms" id="rooms">
+                  <tr>
+                    <td>101</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="0"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="0"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>102</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>8/8</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="1"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="1"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>103</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="2"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="2"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>104</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>4/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="3"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="3"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>105</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="4"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="4"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>201</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="5"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="5"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>202</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="6"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="6"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>203</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>2/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="7"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="7"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>204</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>2/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="8"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="8"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>205</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="9"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="9"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>301</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="10"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="10"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>302</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>3/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="11"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="11"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>303</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>1/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="12"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="12"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>304</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>6/6</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="13"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="13"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>305</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>6/6</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="14"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="14"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>101</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="15"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="15"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>102</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="16"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="16"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>103</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>2/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="17"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="17"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>104</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>1/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="18"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="18"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>105</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="19"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="19"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>201</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="20"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="20"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>202</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="21"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="21"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>203</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>1/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="22"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="22"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>204</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>8/8</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="23"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="23"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>205</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="24"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i class="fa-solid fa-house-medical btnRoomRent"></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>301</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="25"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="24"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>302</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="26"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="26"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>303</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>2/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="27"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="27"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>304</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>1/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="28"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="28"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>305</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="29"
+                          class="fa-solid fa-circle-info btnRoomInfor"
+                        ></i>
+                        <i
+                          id="29"
+                          class="fa-solid fa-house-medical btnRoomRent"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div id="mrView">
+            <div class="inforMyRoom">
+              <div class="roomInfor">
+                <div class="roomIcon">
+                  <i class="fa-solid fa-house-user"></i>
+                </div>
+                <div id="roomTextTemp"></div>
+                <div class="roomTextMain">
+                  <div class="roomText" id="roomText"></div>
+                  <button type="button" id="changeRoom">
+                    Đổi phòng<i class="fa-solid fa-arrows-rotate"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="roomTime">
+                <span>Thời gian thuê</span>
+                <i class="fa-solid fa-calendar-days"></i>
+                <br /><br />
+
+                <div id="timeRoomRent"></div>
+              </div>
+            </div>
+            <div class="extraMyRoom">
+              <div class="roomPrice">
+                <span
+                  >Giá
+                  <i class="fa-solid fa-coins"></i>
+                </span>
+
+                <div id="roomPrice"></div>
+              </div>
+              <div class="timeRemaining">
+                <span
+                  >Còn lại <i class="fa-solid fa-clock-rotate-left"></i
+                ></span>
+                <div id="timeRemaining"></div>
+              </div>
+            </div>
+          </div>
+          <div id="miView">
+            <div class="myInfor">
+              <div class="myIcon">
+                <img src="..\img\user.png" id="avatarImg2" />
+                <label for="file-input">Đổi ảnh</label>
+                <input accept="image/*" type="file" id="file-input" />
+              </div>
+              <div class="myText">
+                <div class="labelText">
+                  <label for="myId">Mã sinh viên:</label><br /><br />
+                  <label for="myName">Tên sinh viên:</label><br /><br />
+                  <label for="myGender">Giới tính:</label><br /><br />
+                  <label for="myBirthday">Ngày sinh:</label><br /><br />
+                  <label for="myAddress">Địa chỉ:</label><br /><br />
+                  <label for="myEmail">Email:</label><br /><br />
+                </div>
+                <div class="contentText">
+                  <div class="contentInput" id="contentInput">
+                    <input type="text" name="myId" id="myId" value="88888" />
+                    <input type="text" name="myName" id="myName" />
+                    <div class="genderText">
+                      <input
+                        type="radio"
+                        name="myGender"
+                        value="Nam"
+                        checked
+                      />Nam <input type="radio" name="myGender" value="Nữ" />Nữ
+                    </div>
+                    <input
+                      type="date"
+                      name="myBirthday"
+                      id="myBirthday"
+                      value="2002-03-18"
+                    />
+                    <input
+                      type="text"
+                      name="myAddress"
+                      id="myAddress"
+                      value="Lê Chân, Hải Phòng"
+                    />
+                    <input
+                      type="email"
+                      name="myEmail"
+                      id="myEmail"
+                      value="a88888@st.vimaru.edu.vn"
+                    />
+                  </div>
+                  <button type="button" id="editMyInfor">Sửa</button>
+                  <button type="button" id="saveMyInfor">Lưu</button>
+                  <!-- <button type="button" id="cancelMyInfor">Hủy</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="pcView">
+            <div class="myInfor">
+              <div class="myText">
+                <div class="labelText">
+                  <label for="curPass">Mật khẩu hiện tại:</label><br /><br />
+                  <label for="newPass">Mật khẩu mới:</label><br /><br />
+                  <label for="verPass">Xác thực mật khẩu mới:</label
+                  ><br /><br />
+                </div>
+                <div class="contentText">
+                  <div class="contentInput" id="contentInput">
+                    <input
+                      type="password"
+                      name="curPass"
+                      id="curPass"
+                      onkeyup="checkPass()"
+                    />
+                    <input
+                      type="password"
+                      name="newPass"
+                      id="newPass"
+                      onkeyup="checkPass()"
+                    />
+                    <input
+                      type="password"
+                      name="verPass"
+                      id="verfPass"
+                      onkeyup="checkPass()"
+                    />
+                  </div>
+                  <div id="messPass"></div>
+                  <!-- <button type="button" id="editMyInfor">Sửa</button> -->
+                  <button type="button" id="savePass">Lưu</button>
+                  <!-- <button type="button" id="cancelMyInfor">Hủy</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="dormiView">
+            <div class="dormiText">
+              <p>
+                KTX Quán nam toạ lạc tại Lô 1 quán nam cách trường ĐHHH 500m về
+                phía Tây Bắc. <br />
+                Trước đây khu ktx này chỉ dành riêng cho khoa Điều Khiển Tàu
+                Biển và Máy Tàu Biển ở và sinh hoạt cũng như học tập . Nhưng
+                hiện nay ban quản lý có ở rộng thị trường nên các bạn không
+                thuộc hai ngành này vẫn có thể đăng ký ở thoải mái. <br />
+                NAM NỮ ĐỀU CÓ THỂ ĐĂNG KÝ Ở ! <br />
+                Đến với "QUÁN NAM" các bạn sẽ thoải mái sinh hoạt ngủ nghỉ và
+                các nhu cầu học tập với phòng ốc và các thiết bị ổn định !
+                <br />
+                Các phòng đều lắp máy nước nóng nhằm phục vụ nhu cầu các bạn vào
+                mua đông cũng như điều hoà giúp phục vụ các bạn vào mùa hè nắng
+                nóng !! <br />
+                Đảm bảo vs các bạn khi bước vào phòng điều hoà nhiệt độ trong
+                phòng sẽ thấp hơn ngoài trời <br />
+                Là một nơi nằm riêng lẻ nên khá yên tĩnh cho việc các sinh viên
+                học và ôn bài. Điều đặc biệt - với sự giám sát của các camera
+                nên việc bảo mật và an ninh trong ktx cực kỳ tốt ! Các bạn có
+                thể yên tâm ko mất mát gì. <br />
+                Nhà vệ sinh + nhà tắm được xây dựng khép kín trong mỗi phòng với
+                không gian rộng rãi giúp các bạn thoải mái sinh hoạt và vệ sinh
+                cái nhân <br />
+                Về vấn đề ăn uống ! Bước ra khỏi cổng ktx bạn có thể thấy rất
+                nhiều tiệm cơm với giá cả SV chỉ từ 15k một suất cơm đảm bảo đủ
+                dinh dưỡng và an toàn thực phẩm. Bên cạnh đó cũng có nhiều quán
+                an vặt. <br />
+                KTX có căntin ăn vặt phục vụ các bạn ăn tối ăn khuya đến 2h-3h
+                sáng !! <br />
+                Đối với các bạn nam muốn rèn luyện sức khoẻ thì chúng tôi có xây
+                dựng phòng tập GYM với các trang thiết bị mới. Giá thành tập vừa
+                phải phù hợp với các bạn ! <br />
+                Xe máy, xe điện cũng như xe đạp các bạn sẽ được gửi và giữ xe an
+                toàn với thẻ quẹt xe khi ra vào ! Đảm bảo an toàn tuyệt đối!
+                <br />
+                Về vấn đề thời gian ra vào KTX , Đối với các sinh viên tự do có
+                thẻ ra vào giúp các bạn thoải mái thời gian và tận dụng được
+                thời gian để đi làm kiếm thêm thu nhập !! <br />
+                Giải trí : Bước ra khỏi cổng ktx là các bạn sẽ đối diện với rất
+                nhiều quán game giúp các bạn giải trí sau giờ học cũng như phục
+                vụ các bạn trong các mùa đăng ký tín chỉ học tập ..
+              </p>
+              <div class="dormiContact">
+                <div class="itemContact">
+                  <span
+                    >Địa chỉ: 58 Ngô Kim Tài, Kênh Dương, Lê Chân, Hải
+                    Phòng</span
+                  ><br />
+                  <span
+                    >Group facebook:
+                    <a
+                      href="https://www.facebook.com/groups/1440125919780330"
+                      target="blank"
+                      >Kí Túc Xá Đại Học Hàng Hải Việt Nam</a
+                    ></span
+                  ><br />
+                  <span>SDT: 0904.519.707 - 0982.016.759</span>
+                </div>
+              </div>
+            </div>
+            <div class="dormiImg">
+              <div class="itemImg" id="itemImg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="popup" id="roomDetail">
+        <div class="roomDetailPopup">
+          <div class="headDetail">
+            <i class="fa-solid fa-x closePopup"></i>
+          </div>
+          <div class="mainDetail">
+            <div class="headFormRent"><b>THÔNG TIN PHÒNG</b></div>
+            <p id="detailRoom">
+              <!-- Tên phòng : 101 <br />
+              Khu : A <br />
+              Loại phòng: Phòng 170.000VND/1 người/1 tháng. Phòng 8 bạn, giường
+              tầng, nhà vệ sinh khép kín. Trong nhà tắm có trang bị bình nóng
+              lạnh. <br />
+              Số lượng người hiện tại : 0/8 <br />
+              <b>Có thể thuê</b> -->
+            </p>
+            <img src="..\img\room101.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="popup" id="roomRent">
+        <div class="roomRentPopup">
+          <div class="headRent">
+            <i class="fa-solid fa-x closePopup"></i>
+          </div>
+          <div class="mainRent">
+            <form class="formRent" action="">
+              <div class="headFormRent"><b>THUÊ PHÒNG</b></div>
+              <p id="rentRoom">
+                <!-- Tên phòng : 101 <br />
+                Khu : A <br /> -->
+              </p>
+              <label for="">Thời gian thuê:</label>
+              <select name="timeRent" id="timeRent" onchange="timeRent1()">
+                <option value="none">Thời gian</option>
+                <option value="1 tháng">1 tháng</option>
+                <option value="2 tháng">2 tháng</option>
+                <option value="3 tháng">3 tháng</option>
+                <option value="6 tháng">6 tháng</option>
+                <option value="1 năm">1 năm</option>
+              </select>
+              <div id="dateRent" class="dateRent"></div>
+              <label for="">Giá:</label>
+              <span id="priceRent"></span>
+              <div class="payRent">
+                <span>Phương thức thanh toán:</span>
+                <br />
+                <input type="radio" name="payment" id="transfer" checked />
+                <label for="transfer"
+                  >Chuyển khoản (Ghi rõ tên + mã sinh viên)</label
+                >
+                <br />
+                <input type="radio" name="payment" id="cash" />
+                <label for="cash">Tiền mặt</label>
+              </div>
+              <div class="submitRent">
+                <button type="reset" id="resetRent">Đặt lại</button>
+                <button type="button" id="submitRent">Thuê</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="popup" id="roomChange">
+        <div class="roomChangePopup">
+          <div class="headDetail">
+            <i class="fa-solid fa-x closePopup"></i>
+          </div>
+          <div class="roomChange">
+            <div class="filter">
+              <div class="searchRoom">
+                <input
+                  type="text"
+                  name="searchRoom"
+                  id="searchRoom2"
+                  onkeyup="tableSearch2()"
+                  placeholder="Tìm phòng số"
+                />
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <select name="area" id="area2" onchange="getArea2()">
+                <option value="none">Khu</option>
+                <option value="D1">Khu D1</option>
+                <option value="D2">Khu D2</option>
+                <!-- <option value="C">Khu C</option> -->
+              </select>
+              <select name="price" id="price2" onchange="getPrice2()">
+                <option value="none">Giá</option>
+                <option value="250K">250K</option>
+                <option value="310K">310K</option>
+                <option value="340K">340K</option>
+                <!-- <option value="250K">250K</option> -->
+              </select>
+              <!-- <select name="maxPeople" id="maxPeople">
+                <option value="none">Số lượng người</option>
+                <option value="1">1 người</option>
+                <option value="2">2 người</option>
+                <option value="3">3 người</option>
+              </select> -->
+              <select name="status" id="status2" onchange="getStatus2()">
+                <option value="none">Trạng thái</option>
+                <option value="Trống">Trống</option>
+                <option value="Còn">Còn</option>
+                <option value="Đầy">Đầy</option>
+              </select>
+              <button type="button" id="resetFilter2">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+              </button>
+            </div>
+            <div class="room">
+              <table
+                class="rooms"
+                data-filter-control="true"
+                data-show-search-clear-button="true"
+              >
+                <thead>
+                  <tr>
+                    <th>Tên phòng</th>
+                    <th>Khu</th>
+                    <th>Giá / người / tháng</th>
+                    <th>Số lượng người</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="mainRooms" id="rooms2">
+                  <tr>
+                    <td>101</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="0"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="0"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>102</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>8/8</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="1"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="1"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>103</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="2"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="2"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>104</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>4/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="3"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="3"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>105</td>
+                    <td>D1</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="4"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="4"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>201</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="5"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="5"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>202</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="6"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="6"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>203</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>2/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="7"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="7"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>204</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>2/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="8"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="8"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>205</td>
+                    <td>D1</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="9"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="9"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>301</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="10"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="10"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>302</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>3/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="11"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="11"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>303</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>1/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="12"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="12"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>304</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>6/6</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="13"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="13"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>305</td>
+                    <td>D1</td>
+                    <td>340K</td>
+                    <td>6/6</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="14"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="14"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>101</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="15"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="15"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>102</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="16"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="16"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>103</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>2/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="17"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="17"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>104</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>1/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="18"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="18"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>105</td>
+                    <td>D2</td>
+                    <td>250K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="19"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="19"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>201</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="20"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="20"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>202</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="21"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="21"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>203</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>1/8</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="22"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="22"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>204</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>8/8</td>
+                    <td>Đầy</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="23"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="23"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>205</td>
+                    <td>D2</td>
+                    <td>310K</td>
+                    <td>0/8</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="24"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i class="fa-solid fa-arrows-rotate btnRoomRent2"></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>301</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="25"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="24"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>302</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="26"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="26"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>303</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>2/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="27"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="27"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>304</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>1/6</td>
+                    <td>Còn</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="28"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="28"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>305</td>
+                    <td>D2</td>
+                    <td>340K</td>
+                    <td>0/6</td>
+                    <td>Trống</td>
+                    <td>
+                      <div class="optionRoom">
+                        <i
+                          id="29"
+                          class="fa-solid fa-circle-info btnRoomInfor2"
+                        ></i>
+                        <i
+                          id="29"
+                          class="fa-solid fa-arrows-rotate btnRoomRent2"
+                        ></i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="popup2" id="roomDetail2">
+        <div class="roomDetailPopup">
+          <div class="headDetail">
+            <i class="fa-solid fa-x closePopup2"></i>
+          </div>
+          <div class="mainDetail">
+            <div class="headFormRent"><b>THÔNG TIN PHÒNG</b></div>
+            <p id="detailRoom2">
+              <!-- Tên phòng : 101 <br />
+              Khu : A <br />
+              Loại phòng: Phòng 170.000VND/1 người/1 tháng. Phòng 8 bạn, giường
+              tầng, nhà vệ sinh khép kín. Trong nhà tắm có trang bị bình nóng
+              lạnh. <br />
+              Số lượng người hiện tại : 0/8 <br />
+              <b>Có thể thuê</b> -->
+            </p>
+            <img src="..\img\room101.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="popup2" id="roomRent2">
+        <div class="roomRentPopup">
+          <div class="headRent">
+            <i class="fa-solid fa-x closePopup2"></i>
+          </div>
+          <div class="mainRent">
+            <form class="formRent" action="">
+              <div class="headFormRent"><b>THUÊ PHÒNG</b></div>
+              <p id="rentRoom2">
+                <!-- Tên phòng : 101 <br />
+                Khu : A <br /> -->
+              </p>
+              <label for="">Thời gian thuê:</label>
+              <select name="timeRent2" id="timeRent2" onchange="TimeRent2()">
+                <option value="none">Thời gian</option>
+                <option value="1 tháng">1 tháng</option>
+                <option value="2 tháng">2 tháng</option>
+                <option value="3 tháng">3 tháng</option>
+                <option value="6 tháng">6 tháng</option>
+                <option value="1 năm">1 năm</option>
+              </select>
+              <div id="dateRent2" class="dateRent"></div>
+              <label for="">Giá:</label>
+              <span id="priceRent2"></span>
+              <div class="payRent">
+                <span>Phương thức thanh toán:</span>
+                <br />
+                <input type="radio" name="payment2" id="transfer2" checked />
+                <label for="transfer2"
+                  >Chuyển khoản (Ghi rõ tên + mã sinh viên)</label
+                >
+                <br />
+                <input type="radio" name="payment2" id="cash2" />
+                <label for="cash2">Tiền mặt</label>
+              </div>
+              <div class="submitRent">
+                <button type="reset" id="resetRent2">Đặt lại</button>
+                <button type="button" id="submitRent2">Thuê</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="notification" id="notification"></div>
+    </div>
+    <script src="..\main.js"></script>
+  </body>
+</html>
